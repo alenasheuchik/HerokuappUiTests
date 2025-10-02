@@ -416,3 +416,34 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+# Дополнительно исключаем лишние папки
+.vs/
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# Базы данных, кэш
+*.db
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Selenium драйверы (если руками кладёшь chromedriver и т.п.)
+*.exe
+
+# Разное
+*.swp
+*.tmp
+*.log
+TestResult*/
+*.trx
+*.coverage
+*.coveragexml
