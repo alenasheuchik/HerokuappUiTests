@@ -18,13 +18,19 @@ namespace HerokuappUiTests.Tests
             Driver.Navigate().GoToUrl($"{BaseUrl}/inputs");
             var box = Wait.WaitVisible(InputsPage.Input);
 
-            box.Clear(); box.SendKeys("123");
+            // принимает цифры
+            box.Clear();
+            box.SendKeys("123");
             box.GetAttribute("value").Should().Be("123");
 
-            box.Clear(); box.SendKeys("abc");
-            Digits.IsMatch(box.GetAttribute("value")).Should().BeTrue("type=number не принимает буквы");
+            // не принимает буквы
+            box.Clear();
+            box.SendKeys("abc");
+            box.GetAttribute("value").Should().BeEmpty("type=number не принимает буквы");
 
-            box.Clear(); box.SendKeys("5");
+            // стрелки изменяют значение
+            box.Clear();
+            box.SendKeys("5");
             box.SendKeys(Keys.ArrowUp);
             box.GetAttribute("value").Should().Be("6");
             box.SendKeys(Keys.ArrowDown);

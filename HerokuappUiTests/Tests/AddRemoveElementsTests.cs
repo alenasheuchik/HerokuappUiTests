@@ -14,7 +14,6 @@ namespace HerokuappUiTests.Tests
             Driver.Navigate().GoToUrl($"{BaseUrl}/add_remove_elements/");
             Wait.WaitClickable(AddRemoveElementsPage.AddButton).Click();
             Wait.WaitClickable(AddRemoveElementsPage.AddButton).Click();
-
             Wait.WaitClickable(AddRemoveElementsPage.DeleteButton).Click();
 
             Driver.FindElements(AddRemoveElementsPage.DeleteButton).Count

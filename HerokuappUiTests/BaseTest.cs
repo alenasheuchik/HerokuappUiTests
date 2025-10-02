@@ -8,7 +8,11 @@ namespace HerokuappUiTests
 {
     public class BaseTest
     {
+        // Подавляем только для поля драйвера правило NUnit1032 (IDisposable field should be disposed)
+#pragma warning disable NUnit1032
         private IWebDriver? _driver;
+#pragma warning restore NUnit1032
+
         private WebDriverWait? _wait;
 
         protected IWebDriver Driver => _driver ?? throw new NullReferenceException("Driver not initialized");
@@ -27,16 +31,17 @@ namespace HerokuappUiTests
             _wait = new WebDriverWait(new SystemClock(), _driver,
                 TimeSpan.FromSeconds(10), TimeSpan.FromMilliseconds(200));
         }
-
         [TearDown]
         public void TearDown()
         {
             try
             {
-                _driver?.Quit();     
-                _driver?.Dispose();  
+                _driver?.Quit();
             }
-            catch { /* ignore */ }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при завершении драйвера: {ex.Message}");
+            }
             finally
             {
                 _wait = null;
